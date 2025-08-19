@@ -13,10 +13,14 @@ import fs from "fs"
             cloudinary.uploader.upload(localFilePath,{
              resource_type:"auto"   
             })
-// file uplooooad3ed succesfullly
+// file uplooooad3ed succesfullly 
 console.log("file is uploaed on cloudinary",response.url);
 return response
         } catch (error) {
-            
+            fs.unlinkSync(localFilePath)
+            return null
         }
     }
+
+
+    export {uploadOnCloudinary}
