@@ -80,10 +80,10 @@
 // //     }
 // // })()
 
-
+import mongoose from "mongoose"
 import dotenv from "dotenv";
 import connectDB from "./db/index.js";
-import app from "./app.js";   // ✅ use the app you already configured
+import app from "./app.js";  
 
 dotenv.config({ path: "./.env" });
 
@@ -100,6 +100,7 @@ connectDB()
       throw error;
     });
   })
-  .catch((error) => {
-    console.error("MongoDB connection error:", error);
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
   });
+

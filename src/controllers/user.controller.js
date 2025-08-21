@@ -3,10 +3,13 @@ import {ApiError} from "../utils/ApiError.js"
 import {User} from "../models/user.model.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
+
 const userRegister = asyncHandler(async(req,res)=>{
     // res.status(200).json({
     //     message:"ok"
     // })
+      console.log("req.body:", req.body);
+    console.log("req.files:", req.files);
 const {fullName,email,username,password} = req.body
 console.log("email :", email);             
 
@@ -21,7 +24,7 @@ if (!email.includes("@")) {
     throw new ApiError(404,"email should have @")
 }
 
-const existedUser = User.findOne({
+const existedUser = await    User.findOne({
 $or : [{username},{email}]
 })
 
@@ -30,8 +33,8 @@ if(existedUser){
 }
 
 
-const avatarLocalPath = req.files?.avatar[0]?.path;
-const coverImageLocalPath = req.files?.coverImage[0]?.path;
+const avatarLocalPath = req.files?.avatar?.[0]?.path;
+const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
 
 if (!avatarLocalPath) {
     throw new ApiError(404, "avatar should present")  
