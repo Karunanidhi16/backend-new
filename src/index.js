@@ -104,3 +104,22 @@ connectDB()
     console.error("MongoDB connection error:", err);
   });
 
+// ./db/index.js
+// import mongoose from "mongoose";
+// import { DB_NAME } from "./constants.js";
+
+// const connectDB = async () => {
+//   try {
+//     // ✅ Only use base URI, and tell mongoose which DB to use
+//     await mongoose.connect(process.env.MONGODB_URI, {
+//       dbName: DB_NAME,
+//     });
+
+//     console.log(`✅ MongoDB connected: ${process.env.MONGODB_URI}`);
+//   } catch (error) {
+//     console.error("❌ MongoDB connection failed:", error);
+//     process.exit(1);
+//   }
+// };
+
+export default connectDB;
