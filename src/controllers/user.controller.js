@@ -230,7 +230,7 @@ const updateAccountDetails = asyncHandler(async(req,res)=>{
         throw new ApiError(400,"ALL FIELDS ARE REQUIRED")
     }  
 
-    const user = User.findByIdAndUpdate(req.user?._id,
+    const user = await User.findByIdAndUpdate(req.user?._id,
     {
         $set:{
             fullName : fullName,
@@ -303,4 +303,4 @@ const user =   await User.findByIdAndUpdate(
 
 export {userRegister,loginUser,logoutUser,refreshAccessToken,changeCurrentPassword,getCurrentUser,
     updateAccountDetails,updateUserAvatar,updateUserCoverImage
-}
+}               
